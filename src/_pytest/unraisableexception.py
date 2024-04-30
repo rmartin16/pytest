@@ -70,6 +70,9 @@ def unraisable_exception_runtest_hook() -> Generator[None, None, None]:
                 else:
                     err_msg = "Exception ignored in"
                 msg = f"{err_msg}: {cm.unraisable.object!r}\n\n"
+                print(f"{cm.unraisable.exc_type=}")
+                print(f"{cm.unraisable.exc_value=}")
+                print(f"{cm.unraisable.exc_traceback}")
                 msg += "".join(
                     traceback.format_exception(
                         cm.unraisable.exc_type,
@@ -77,6 +80,9 @@ def unraisable_exception_runtest_hook() -> Generator[None, None, None]:
                         cm.unraisable.exc_traceback,
                     )
                 )
+                print(f"{dir(cm.unraisable)=}")
+                print(f"{cm.unraisable.object.__dict__=}")
+                print(f"{getattr(cm.unraisable.object, 'briefcase_owned', None)=}")
                 warnings.warn(pytest.PytestUnraisableExceptionWarning(msg))
 
 
